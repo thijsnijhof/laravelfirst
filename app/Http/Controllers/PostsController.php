@@ -13,8 +13,11 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
-        return view('posts');
+        $code = 'chain12345';
+        $color = 'red';
+        $cars = ['Ford', 'Nissan', 'Chevy'];
+        $hobbies = ['Coding', 'Skating', 'Running'];
+        return view('posts', compact('code','color', 'cars', 'hobbies'));
 
     }
 
