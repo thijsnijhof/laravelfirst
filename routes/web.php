@@ -1,5 +1,7 @@
 <?php
 
+// use the model Post
+use App\Post;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,3 +46,24 @@
 // ]);
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/posts', 'PostsController@index')->name('posts');
+
+Route::get('/posts/{id}', function($id){
+    
+    // $post = Post::find($id);
+
+    // $post = Post::all();
+
+    // $post = Post::orderBy('id', 'desc')->get();
+
+    // $post = Post::where('is_admin', 1)->get();
+
+    // $post = Post::where('is_admin', 1)
+    // ->where('votes', 5)
+    // ->get();
+
+    // $post = Post::all()->first();
+
+    $post = Post::find([$id, 1])->take(2);
+
+    return $post;
+});
