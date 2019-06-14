@@ -37,10 +37,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // establish a relationship
-    public function post(){
-        // return $this->hasOne('App\Post', 'xxx_id', 'name');
-        return $this->hasOne('App\Post', 'xxx_id', 'name');
+    // // establish a relationship
+    // public function post(){
+    //     // return $this->hasOne('App\Post', 'xxx_id', 'name');
+    //     return $this->hasOne('App\Post');
 
+    // }
+    // // get more posts 
+    // public function posts(){
+    //     return $this->hasMany('App\Post');
+    // }
+
+    //  ROLES many to many
+    // public function roles(){
+    //     return $this->belongsToMany('App\Role');
+    // }
+
+    // POLYMORPHIC RELATIONSHIP
+    public function image(){
+        return $this->morphOne('App\Image', 'imageable');
     }
 }
