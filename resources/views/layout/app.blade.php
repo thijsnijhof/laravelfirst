@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>FORMS</title>
 
         <link href="{{ asset('css/app.css')}}" rel="stylesheet">
         <link href="{{ asset('css/styles.css')}}" rel="stylesheet">

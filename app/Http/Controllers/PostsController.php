@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -13,12 +14,9 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $code = 'chain12345';
-        $color = 'red';
-        $cars = ['Ford', 'Nissan', 'Chevy'];
-        $hobbies = ['Coding', 'Skating', 'Running'];
-        return view('posts', compact('code','color', 'cars', 'hobbies'));
+        $posts = Post::all();
 
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -28,7 +26,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -39,7 +37,13 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new Post;
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->save();
+
+        return redirect('/');
+        // Post::create($request->all());
     }
 
     /**
@@ -61,7 +65,9 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -73,7 +79,14 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        $post->title = $request->title;
+        $post->body = $request->body;
+
+        $post->save();
+
+        return redirect('/posts');
     }
 
     /**
@@ -84,6 +97,10 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        $post->delete();
+
+        return redirect('/posts');
     }
 }
