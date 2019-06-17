@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Http\Requests\PostFormRequest;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -35,8 +36,16 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostFormRequest $request)
     {
+
+        // $validateData = $request->validate([
+        //     'title' => 'required|max:15',
+        //     'body' => 'required',
+        //     'number_form' => 'numeric',
+        //     'check_form' => 'accepted'
+        // ]);
+
         $post = new Post;
         $post->title = $request->title;
         $post->body = $request->body;

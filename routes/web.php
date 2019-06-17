@@ -16,4 +16,8 @@ use App\User;
 */
 
 Route::get('/', 'HomeController@index');
-Route::resource('/posts', 'PostsController');
+
+// go through the middleware first for validation to show the errors with global variables
+Route::group(['middleware' => 'web'], function(){
+    Route::resource('/posts', 'PostsController');
+});
