@@ -20,17 +20,6 @@
                                 class="form-control">
                                 </textarea>
                 </div>
-
-                <div class="form-group">
-                        <label for="number_form">Magic Number</label>
-                        <input type="text" id="number_form" name="number_form" placeholder="Enter the number..."
-                                class="form-control">
-                </div>
-                <br/>
-                <div class="form-check">
-                        <input type="checkbox" id="check_form" name="check_form" class="form-check-input">
-                        <label for="check_form">Accept</label>
-                </div>
                 <br/>
                 {{-- old way: {{csrf_field()}} --}}
                 @csrf
