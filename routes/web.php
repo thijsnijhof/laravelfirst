@@ -1,8 +1,8 @@
 <?php
 
 // use the model Post
-use App\Post;
-use App\User;
+// use App\Post;
+// use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +14,15 @@ use App\User;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('/admin', function(){
+//     return 'Hello ADMIN';
+// })->middleware('auth');
+Route::get('/admin', 'AdminController@index')->name('admin');
 
-Route::get('/', 'HomeController@index');
-
-// go through the middleware first for validation to show the errors with global variables
-Route::group(['middleware' => 'web'], function(){
-    Route::resource('/posts', 'PostsController');
+Route::get('/', function(){
+    return 'This is my homepage';
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
