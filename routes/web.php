@@ -19,9 +19,28 @@ use Illuminate\Http\Request;
 // })->middleware('auth');
 
 
-Route::get('/admin', 'AdminController@index')->name('admin');
+// Route::get('/admin', ['middleware' => 'isAdmin', function(){
+//     return redirect('/home');
+// }]);
 
-Route::get('/', function(Request $request){
+// MIDDLEWARE MULTIPLE ROUTES
+// ORDER IS IMPORTANT
+// Route::middleware(['isAdmin', 'another', 'thirdone'])->group(function(){
+//     Route::get('/admin', function(){
+//         return redirect('/home');
+//     });
+//     Route::get('/admin/dashboard', function(){
+//         return redirect('/home');
+//     });
+// });
+
+// DIFFERENT WAY OF MULTIPLE ROUTES
+
+Route::resource('/admin', 'AdminController');
+
+// Route::get('/', function(Request $request){
+    // SESSIONS AND FLASH MESSAGES
+    
     // $request->session()->put('Mode', 'Awesome');
     // $request->session()->put('Days', ['1', '2', '3']);
     // $request->session()->put('Mode', 'SUPER AWESOME');
@@ -33,11 +52,24 @@ Route::get('/', function(Request $request){
     // session(['Days' => ['x']]);
     // $request->session()->flash('Greeting', 'Hello Guys!');
     // $request->session()->reflash();
-    $request->session()->keep(['Greeting']);
+    // $request->session()->keep(['Greeting']);
 
 
-    return $request->session()->all();
-});
+    // return $request->session()->all();
+
+// });
+
+    //  CUSTOM MIDDLEWARES
+
+// Route::get('/', function(){
+//     $user = Auth::user();
+
+//     return $user;
+// });
+
+// Route::get('/admin', ['middleware' => 'awesome', function(){
+//     return 'nothing';
+// }]);
 
 Auth::routes();
 

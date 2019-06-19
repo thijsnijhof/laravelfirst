@@ -17,4 +17,8 @@ class User extends Authenticatable
      */
     // Make sure you set these properties for the model
     protected $fillable = ['name', 'username', 'email', 'password', 'contact',];
+
+    public function role(){
+        return $this->belongsTo('App\Role');
+    }
 }
